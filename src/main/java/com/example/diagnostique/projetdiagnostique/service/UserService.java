@@ -1,7 +1,10 @@
 package com.example.diagnostique.projetdiagnostique.service;
 
+import com.example.diagnostique.projetdiagnostique.DTO.LoginDTO;
 import com.example.diagnostique.projetdiagnostique.DTO.UserDTO;
+import com.example.diagnostique.projetdiagnostique.response.LoginMessage;
 
 public interface UserService {
-    String addU(UserDTO userDTO);
+    void addUser(UserDTO userDTO);
+    LoginMessage loginUser(LoginDTO loginDTO);
 }

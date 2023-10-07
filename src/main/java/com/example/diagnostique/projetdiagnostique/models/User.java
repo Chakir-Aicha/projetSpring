@@ -20,6 +20,6 @@ public class User {
     private String password;
     @Column(nullable = false)
     private String email;
-    @Column(nullable = false)
-    private String userType;
+    @Column(nullable = false, name = "usertype")
+    private String usertype;
 }
