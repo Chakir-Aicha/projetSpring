@@ -2,11 +2,14 @@ package com.example.diagnostique.projetdiagnostique.controllers;
 
 import com.example.diagnostique.projetdiagnostique.DTO.LoginDTO;
 import com.example.diagnostique.projetdiagnostique.DTO.UserDTO;
+import com.example.diagnostique.projetdiagnostique.models.User;
 import com.example.diagnostique.projetdiagnostique.response.LoginMessage;
 import com.example.diagnostique.projetdiagnostique.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -15,10 +18,10 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping( "/add")
-    public void addUser(@RequestBody UserDTO userDTO)
+    public String addUser(@RequestBody UserDTO userDTO)
     {
           userService.addUser(userDTO);
-        //return id;
+        return "user added successfully";
     }
     @PostMapping( "/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDTO)

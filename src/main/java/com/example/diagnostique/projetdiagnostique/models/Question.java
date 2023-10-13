@@ -2,22 +2,43 @@ package com.example.diagnostique.projetdiagnostique.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.io.Serializable;
+
+import java.util.List;
+
 
 @Entity
+@Table
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
-public class Question implements Serializable {
+@NoArgsConstructor
+@JsonIgnoreProperties ("categorie")
+public class Question {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int id;
     @Column(nullable = false)
     private String description;
     @ManyToOne
-    private Categorie categorie;
+    @JoinColumn(name="category_id")
+    private Category categorie;
+
+    @OneToMany(mappedBy = "question",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Reponse>reponses;
+
+
+
+//    {
+//        "description": "Nouvelle question",
+//            "categorie": {
+//        "id": 2
+//
+//    }
+//    }
+
+
 }
